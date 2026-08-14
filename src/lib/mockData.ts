@@ -82,7 +82,7 @@ export const RISK_LEVELS: RiskLevel[] = ["Low", "Medium", "High", "Critical"];
 
 export function generateDataset(seed = Date.now() % 100000, count = 780): SurveyRecord[] {
   const rand = mulberry32(seed);
-  const pick = <T,>(arr: T[]): T => arr[Math.floor(rand() * arr.length)];
+  const pick = <T,>(arr: T[]): T => arr[Math.floor(rand() * arr.length)]!;
   const int = (min: number, max: number) => min + Math.floor(rand() * (max - min + 1));
 
   const stateNames = Object.keys(STATES);
@@ -93,10 +93,10 @@ export function generateDataset(seed = Date.now() % 100000, count = 780): Survey
   const pickEnumerator = () => {
     let r = rand() * totalWeight;
     for (let i = 0; i < enumerators.length; i++) {
-      r -= weights[i];
-      if (r <= 0) return enumerators[i];
+      r -= weights[i]!;
+      if (r <= 0) return enumerators[i]!;
     }
-    return enumerators[0];
+    return enumerators[0]!;
   };
 
   const reasonsOfType = (types: AnomalyType[], n: number) => {
@@ -112,7 +112,7 @@ export function generateDataset(seed = Date.now() % 100000, count = 780): Survey
   const records: SurveyRecord[] = [];
   for (let i = 0; i < count; i++) {
     const state = pick(stateNames);
-    const district = pick(STATES[state]);
+    const district = pick(STATES[state]!);
     const area: "Urban" | "Rural" = rand() < 0.4 ? "Urban" : "Rural";
     const employment =
       rand() < 0.62 ? "Employed" : rand() < 0.55 ? "Unemployed" : "Not in Labour Force";
@@ -168,7 +168,7 @@ export function generateDataset(seed = Date.now() % 100000, count = 780): Survey
       clusterId: `CL-${String(int(1, 240)).padStart(4, "0")}`,
       householdId: `HH-${String(int(1, 9999)).padStart(5, "0")}`,
       enumeratorId: pickEnumerator(),
-      period: PERIODS[Math.min(PERIODS.length - 1, Math.floor(Math.pow(rand(), 0.7) * PERIODS.length))],
+      period: PERIODS[Math.min(PERIODS.length - 1, Math.floor(Math.pow(rand(), 0.7) * PERIODS.length))]!,
       age,
       gender: rand() < 0.49 ? "Male" : rand() < 0.98 ? "Female" : "Other",
       householdSize: Math.max(1, Math.min(8, Math.round(2 + Math.abs(rand() + rand() - 1) * 5))),

@@ -14,6 +14,7 @@ import { Route as AnomaliesRouteImport } from './routes/anomalies'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as EnumeratorsRouteImport } from './routes/enumerators'
 import { Route as HeatmapRouteImport } from './routes/heatmap'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as TrendsRouteImport } from './routes/trends'
 import { Route as UploadRouteImport } from './routes/upload'
 
@@ -42,6 +43,11 @@ const HeatmapRoute = HeatmapRouteImport.update({
   path: '/heatmap',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TrendsRoute = TrendsRouteImport.update({
   id: '/trends',
   path: '/trends',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/enumerators': typeof EnumeratorsRoute
   '/heatmap': typeof HeatmapRoute
+  '/reports': typeof ReportsRoute
   '/trends': typeof TrendsRoute
   '/upload': typeof UploadRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/enumerators': typeof EnumeratorsRoute
   '/heatmap': typeof HeatmapRoute
+  '/reports': typeof ReportsRoute
   '/trends': typeof TrendsRoute
   '/upload': typeof UploadRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/enumerators': typeof EnumeratorsRoute
   '/heatmap': typeof HeatmapRoute
+  '/reports': typeof ReportsRoute
   '/trends': typeof TrendsRoute
   '/upload': typeof UploadRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/enumerators'
     | '/heatmap'
+    | '/reports'
     | '/trends'
     | '/upload'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/enumerators'
     | '/heatmap'
+    | '/reports'
     | '/trends'
     | '/upload'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/enumerators'
     | '/heatmap'
+    | '/reports'
     | '/trends'
     | '/upload'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   EnumeratorsRoute: typeof EnumeratorsRoute
   HeatmapRoute: typeof HeatmapRoute
+  ReportsRoute: typeof ReportsRoute
   TrendsRoute: typeof TrendsRoute
   UploadRoute: typeof UploadRoute
 }
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HeatmapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/trends': {
       id: '/trends'
       path: '/trends'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   EnumeratorsRoute: EnumeratorsRoute,
   HeatmapRoute: HeatmapRoute,
+  ReportsRoute: ReportsRoute,
   TrendsRoute: TrendsRoute,
   UploadRoute: UploadRoute,
 }

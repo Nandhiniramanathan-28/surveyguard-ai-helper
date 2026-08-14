@@ -160,13 +160,13 @@ function Explorer() {
       title="Anomaly Explorer"
       subtitle={`${filtered.length.toLocaleString("en-IN")} records match your filters — highest risk first`}
       actions={
-        <Button variant="outline" className="lg:hidden" onClick={() => setShowFilters((v) => !v)}>
+        <Button variant="outline" className="xl:hidden" onClick={() => setShowFilters((v) => !v)}>
           <SlidersHorizontal className="size-4" /> Filters
         </Button>
       }
     >
-      <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-        <div className={showFilters ? "block" : "hidden lg:block"}>{filters}</div>
+      <div className="grid gap-6 xl:grid-cols-[280px_1fr]">
+        <div className={showFilters ? "block" : "hidden xl:block"}>{filters}</div>
 
         <div className="min-w-0">
           <div className="mb-4 flex flex-wrap items-center gap-3">
@@ -198,7 +198,7 @@ function Explorer() {
           ) : (
             <div className="glass-card overflow-hidden rounded-2xl">
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[860px] text-sm">
+                <table className="w-full min-w-[720px] text-sm">
                   <thead>
                     <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-muted-foreground">
                       <th className="px-4 py-3 font-medium">Record</th>

@@ -136,12 +136,21 @@ export function generateDataset(seed = Date.now() % 100000, count = 780): Survey
     if (roll < 0.03) {
       // obvious rule-breaking anomaly
       const kind = int(0, 2);
-      if (kind === 0) age = int(101, 145);
-      else if (kind === 1) income = -int(5000, 90000);
-      else workingHours = int(95, 140);
+      let ruleReason = "";
+      if (kind === 0) {
+        age = int(101, 145);
+        ruleReason = "Age outside valid range (0–100)";
+      } else if (kind === 1) {
+        income = -int(5000, 90000);
+        ruleReason = "Negative income value recorded";
+      } else {
+        workingHours = int(95, 140);
+        ruleReason = "Working hours exceed the physically possible weekly maximum";
+      }
       riskScore = int(84, 99);
-      types = ["rule", "statistical"];
-      const rs = reasonsOfType(["rule"], 1).concat(reasonsOfType(["statistical", "ml"], int(1, 2)));
+      const rs = [{ text: ruleReason, type: "rule" as AnomalyType }].concat(
+        reasonsOfType(["statistical", "ml"], int(1, 2)),
+      );
       reasons = rs.map((r) => r.text);
       types = Array.from(new Set(rs.map((r) => r.type)));
     } else if (roll < 0.1) {

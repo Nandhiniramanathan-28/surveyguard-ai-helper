@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnomaliesRouteImport } from './routes/anomalies'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as EnumeratorsRouteImport } from './routes/enumerators'
+import { Route as HeatmapRouteImport } from './routes/heatmap'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as TrendsRouteImport } from './routes/trends'
+import { Route as UploadRouteImport } from './routes/upload'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnomaliesRoute = AnomaliesRouteImport.update({
+  id: '/anomalies',
+  path: '/anomalies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnumeratorsRoute = EnumeratorsRouteImport.update({
+  id: '/enumerators',
+  path: '/enumerators',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HeatmapRoute = HeatmapRouteImport.update({
+  id: '/heatmap',
+  path: '/heatmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrendsRoute = TrendsRouteImport.update({
+  id: '/trends',
+  path: '/trends',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UploadRoute = UploadRouteImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/anomalies': typeof AnomaliesRoute
+  '/dashboard': typeof DashboardRoute
+  '/enumerators': typeof EnumeratorsRoute
+  '/heatmap': typeof HeatmapRoute
+  '/reports': typeof ReportsRoute
+  '/trends': typeof TrendsRoute
+  '/upload': typeof UploadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/anomalies': typeof AnomaliesRoute
+  '/dashboard': typeof DashboardRoute
+  '/enumerators': typeof EnumeratorsRoute
+  '/heatmap': typeof HeatmapRoute
+  '/reports': typeof ReportsRoute
+  '/trends': typeof TrendsRoute
+  '/upload': typeof UploadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/anomalies': typeof AnomaliesRoute
+  '/dashboard': typeof DashboardRoute
+  '/enumerators': typeof EnumeratorsRoute
+  '/heatmap': typeof HeatmapRoute
+  '/reports': typeof ReportsRoute
+  '/trends': typeof TrendsRoute
+  '/upload': typeof UploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/anomalies'
+    | '/dashboard'
+    | '/enumerators'
+    | '/heatmap'
+    | '/reports'
+    | '/trends'
+    | '/upload'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/anomalies'
+    | '/dashboard'
+    | '/enumerators'
+    | '/heatmap'
+    | '/reports'
+    | '/trends'
+    | '/upload'
+  id:
+    | '__root__'
+    | '/'
+    | '/anomalies'
+    | '/dashboard'
+    | '/enumerators'
+    | '/heatmap'
+    | '/reports'
+    | '/trends'
+    | '/upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnomaliesRoute: typeof AnomaliesRoute
+  DashboardRoute: typeof DashboardRoute
+  EnumeratorsRoute: typeof EnumeratorsRoute
+  HeatmapRoute: typeof HeatmapRoute
+  ReportsRoute: typeof ReportsRoute
+  TrendsRoute: typeof TrendsRoute
+  UploadRoute: typeof UploadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anomalies': {
+      id: '/anomalies'
+      path: '/anomalies'
+      fullPath: '/anomalies'
+      preLoaderRoute: typeof AnomaliesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enumerators': {
+      id: '/enumerators'
+      path: '/enumerators'
+      fullPath: '/enumerators'
+      preLoaderRoute: typeof EnumeratorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/heatmap': {
+      id: '/heatmap'
+      path: '/heatmap'
+      fullPath: '/heatmap'
+      preLoaderRoute: typeof HeatmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trends': {
+      id: '/trends'
+      path: '/trends'
+      fullPath: '/trends'
+      preLoaderRoute: typeof TrendsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upload': {
+      id: '/upload'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnomaliesRoute: AnomaliesRoute,
+  DashboardRoute: DashboardRoute,
+  EnumeratorsRoute: EnumeratorsRoute,
+  HeatmapRoute: HeatmapRoute,
+  ReportsRoute: ReportsRoute,
+  TrendsRoute: TrendsRoute,
+  UploadRoute: UploadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

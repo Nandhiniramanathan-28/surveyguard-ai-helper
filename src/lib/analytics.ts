@@ -40,7 +40,7 @@ export function periodTrend(records: SurveyRecord[]) {
 
 export interface GroupStat {
   key: string;
-  state?: string;
+  state?: string | undefined;
   records: number;
   anomalies: number;
   rate: number;

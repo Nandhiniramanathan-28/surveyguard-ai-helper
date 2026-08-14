@@ -14,6 +14,7 @@ import { Route as AnomaliesRouteImport } from './routes/anomalies'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as EnumeratorsRouteImport } from './routes/enumerators'
 import { Route as HeatmapRouteImport } from './routes/heatmap'
+import { Route as TrendsRouteImport } from './routes/trends'
 import { Route as UploadRouteImport } from './routes/upload'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const HeatmapRoute = HeatmapRouteImport.update({
   path: '/heatmap',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrendsRoute = TrendsRouteImport.update({
+  id: '/trends',
+  path: '/trends',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UploadRoute = UploadRouteImport.update({
   id: '/upload',
   path: '/upload',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/enumerators': typeof EnumeratorsRoute
   '/heatmap': typeof HeatmapRoute
+  '/trends': typeof TrendsRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/enumerators': typeof EnumeratorsRoute
   '/heatmap': typeof HeatmapRoute
+  '/trends': typeof TrendsRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRoutesById {
@@ -70,15 +78,28 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/enumerators': typeof EnumeratorsRoute
   '/heatmap': typeof HeatmapRoute
+  '/trends': typeof TrendsRoute
   '/upload': typeof UploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/anomalies' | '/dashboard' | '/enumerators' | '/heatmap' | '/upload'
+    | '/'
+    | '/anomalies'
+    | '/dashboard'
+    | '/enumerators'
+    | '/heatmap'
+    | '/trends'
+    | '/upload'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/anomalies' | '/dashboard' | '/enumerators' | '/heatmap' | '/upload'
+    | '/'
+    | '/anomalies'
+    | '/dashboard'
+    | '/enumerators'
+    | '/heatmap'
+    | '/trends'
+    | '/upload'
   id:
     | '__root__'
     | '/'
@@ -86,6 +107,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/enumerators'
     | '/heatmap'
+    | '/trends'
     | '/upload'
   fileRoutesById: FileRoutesById
 }
@@ -95,6 +117,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   EnumeratorsRoute: typeof EnumeratorsRoute
   HeatmapRoute: typeof HeatmapRoute
+  TrendsRoute: typeof TrendsRoute
   UploadRoute: typeof UploadRoute
 }
 
@@ -135,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HeatmapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trends': {
+      id: '/trends'
+      path: '/trends'
+      fullPath: '/trends'
+      preLoaderRoute: typeof TrendsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/upload': {
       id: '/upload'
       path: '/upload'
@@ -151,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   EnumeratorsRoute: EnumeratorsRoute,
   HeatmapRoute: HeatmapRoute,
+  TrendsRoute: TrendsRoute,
   UploadRoute: UploadRoute,
 }
 export const routeTree = rootRouteImport

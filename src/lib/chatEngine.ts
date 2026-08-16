@@ -1,5 +1,5 @@
 import type { SurveyRecord } from "./mockData";
-import { byDistrict, byEnumerator, isAnomaly, peerAverage, summarize } from "./analytics";
+import { byDistrict, byEnumerator, peerAverage, summarize } from "./analytics";
 import { inr } from "./mockData";
 
 export interface ChatAnswer {

@@ -23,6 +23,12 @@ export const Route = createFileRoute("/anomalies")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
+  validateSearch: (search: Record<string, unknown>) => ({
+    q: typeof search["q"] === "string" ? (search["q"] as string) : undefined,
+    state: typeof search["state"] === "string" ? (search["state"] as string) : undefined,
+    district: typeof search["district"] === "string" ? (search["district"] as string) : undefined,
+    level: typeof search["level"] === "string" ? (search["level"] as string) : undefined,
+  }),
   component: Explorer,
 });
 
@@ -41,11 +47,12 @@ const selectCls =
 
 function Explorer() {
   const { records, ready } = useStore();
-  const [q, setQ] = useState("");
-  const [state, setState] = useState("all");
-  const [district, setDistrict] = useState("all");
+  const sp = Route.useSearch();
+  const [q, setQ] = useState(sp.q ?? "");
+  const [state, setState] = useState(sp.state ?? "all");
+  const [district, setDistrict] = useState(sp.district ?? "all");
   const [enumerator, setEnumerator] = useState("all");
-  const [level, setLevel] = useState("all");
+  const [level, setLevel] = useState(sp.level ?? "all");
   const [period, setPeriod] = useState("all");
   const [type, setType] = useState("all");
   const [sort, setSort] = useState<"score" | "id" | "district">("score");

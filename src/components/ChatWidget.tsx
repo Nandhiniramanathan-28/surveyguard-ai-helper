@@ -103,6 +103,7 @@ export function ChatWidget() {
                 >
                   {m.text}
                   {m.link && (
+                    <div>
                     <button
                       onClick={() => {
                         void navigate({ to: m.link!.to, search: m.link!.search ?? {} });
@@ -112,6 +113,7 @@ export function ChatWidget() {
                     >
                       {m.link.label} <ArrowUpRight className="size-3.5" />
                     </button>
+                    </div>
                   )}
                 </div>
               </div>

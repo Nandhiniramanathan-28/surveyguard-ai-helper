@@ -109,7 +109,7 @@ function Landing() {
               <ArrowRight className="size-4" />
             </Button>
             <p className="text-center text-xs text-muted-foreground">
-              Demo environment. All survey data shown is synthetic.
+              {"\n"}
             </p>
           </form>
         </div>
